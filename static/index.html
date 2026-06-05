@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet Spark - Suivi des Interactions Commerciales</title>
+    <!-- Chargement de la bibliothèque Vis-Network -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Projet Big Data - Analyse de Graphes</h1>
+            <div class="status" id="update-timer">En attente de connexion...</div>
+        </header>
+
+        <!-- Métriques et Statistiques du flux -->
+        <section class="stats-grid">
+            <div class="card">
+                <h3>Interactions Actives</h3>
+                <div class="value" id="kpi-total-interactions">0</div>
+            </div>
+            <div class="card">
+                <h3>Nombre d'Acheteurs</h3>
+                <div class="value" id="kpi-users">0</div>
+            </div>
+            <div class="card">
+                <h3>Nombre de Vendeurs</h3>
+                <div class="value" id="kpi-sellers">0</div>
+            </div>
+            <div class="card">
+                <h3>Nombre de Produits</h3>
+                <div class="value" id="kpi-products">0</div>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <!-- Panneau Principal contenant le Graphe -->
+            <section class="graph-panel">
+                <h3>Graphe des interactions (Fenêtre glissante 5 min)</h3>
+                <div id="graph-container">
+                    <div class="loading" id="loader">
+                        Chargement des données depuis Spark Streaming...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sidebar avec légende et indicateurs -->
+            <aside class="sidebar">
+                <div class="sidebar-panel">
+                    <h3>Légende</h3>
+                    
+                    <strong>Nœuds (Entités) :</strong>
+                    <div class="legend-item" style="margin-top: 5px;">
+                        <div class="legend-color user"></div>
+                        <span>Acheteur (Utilisateur)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color seller"></div>
+                        <span>Vendeur (Annonceur)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color product"></div>
+                        <span>Produit (Annonce)</span>
+                    </div>
+
+                    <strong style="margin-top: 10px; display: block;">Liens (Relations) :</strong>
+                    <div class="legend-item" style="margin-top: 5px;">
+                        <div class="legend-line aime"></div>
+                        <span>AIME (Like)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line vout"></div>
+                        <span>VOUT (Intention d'achat)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line achat"></div>
+                        <span>ACHAT</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line propose"></div>
+                        <span>PROPOSE (Mis en vente)</span>
+                    </div>
+                </div>
+
+                <!-- Tableau de centralité (degré de centralité calculé par Spark) -->
+                <div class="sidebar-panel">
+                    <h3>Top Centralité</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Degré</th>
+                            </tr>
+                        </thead>
+                        <tbody id="centrality-table-body">
+                            <tr>
+                                <td colspan="3" style="text-align: center;">Aucune donnée</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Script de l'application -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

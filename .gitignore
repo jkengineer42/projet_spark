@@ -1,0 +1,22 @@
+# Fichiers temporaires Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Dossier de données de streaming (générés dynamiquement)
+data/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Fichiers système OS
+.DS_Store
+Thumbs.db
+
+# Environnements virtuels
+.venv/
+venv/
+env/
