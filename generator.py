@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 
 # Dossier d'entrée pour Spark Streaming
 INPUT_DIR = "data/input_stream"
-MAX_FILES = 20  # On garde un nombre limité de fichiers pour ne pas saturer le disque
+MAX_FILES = 200  # On garde un nombre suffisant de fichiers pour que Spark ait le temps de les lire
 
 # Données pour la simulation
 CITIES = ["Paris", "Lyon", "Marseille", "Toulouse", "Nice", "Bordeaux", "Nantes", "Lille"]

@@ -3,8 +3,12 @@ import json
 import shutil
 import datetime
 
-# Forcer l'utilisation de Java 11 pour éviter les erreurs getSubject sur Java 24/25
-os.environ["JAVA_HOME"] = "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home"
+import sys
+
+# Détection dynamique de la JVM de l'environnement virtuel (nécessaire pour PySpark 4.x et compatible Hadoop)
+env_jvm = os.path.join(sys.prefix, "lib", "jvm")
+if os.path.exists(env_jvm):
+    os.environ["JAVA_HOME"] = env_jvm
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lit, concat, window
